@@ -3,52 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FrontEnd - Tienda de Electrónica y Automatización</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>FrontEnd - Tienda</title>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-    <nav class="navbar">
+    <nav>
         <div class="nav-container">
-            <div class="logo">FrontEnd</div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#" onclick="navegarA('home')">Inicio</a></li>
-                <li><a href="#" onclick="navegarA('productos')">Productos</a></li>
-                <li><a href="#" onclick="navegarA('nosotros')">Nosotros</a></li>
-                <li><a href="#" onclick="navegarA('blog')">Blog</a></li>
-                <li><a href="#" onclick="navegarA('contacto')">Contacto</a></li>
-                <li id="adminNav" style="display: none;"><a href="#" onclick="navegarA('admin')">Admin</a></li>
+            <h1>FrontEnd</h1>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li id="adminNav" style="display:none"><a href="admin/dashboard.html">Admin</a></li>
             </ul>
             <div class="nav-right">
-                <a href="#" onclick="navegarA('carrito')" class="carrito-link">
-                    🛒 Carrito <span id="cartCount">0</span>
-                </a>
-                <button id="btnSesion" onclick="abrirSesion()" class="btn-sesion">Iniciar Sesión</button>
-                <button id="btnCerrar" onclick="cerrarSesion()" class="btn-cerrar" style="display: none;">Cerrar Sesión</button>
+                <a href="carrito.html">🛒 <span id="cartCount">0</span></a>
+                <button id="btnSesion" onclick="abrirLogin()">Iniciar Sesión</button>
+                <button id="btnCerrar" onclick="cerrarSesion()" style="display:none">Cerrar Sesión</button>
             </div>
         </div>
     </nav>
 
-    <!-- Modal de Login/Registro -->
-    <div id="modalSesion" class="modal">
+    <!-- Modal Login -->
+    <div id="modalLogin" class="modal" style="display:none">
         <div class="modal-content">
-            <span class="close" onclick="cerrarModal('modalSesion')">&times;</span>
+            <span class="close" onclick="cerrarLogin()">&times;</span>
             <h2>Iniciar Sesión</h2>
-            <form id="formLogin">
+            <form id="formLogin" onsubmit="hacerLogin(event)">
                 <input type="text" id="rutLogin" placeholder="RUT (ej: 12345678-9)" required>
                 <input type="password" id="passLogin" placeholder="Contraseña" required>
-                <button type="submit" class="btn-primary">Iniciar Sesión</button>
+                <button type="submit">Iniciar Sesión</button>
             </form>
-            <p class="modal-divider">o</p>
-            <button onclick="cambiarRegistro()" class="btn-secondary">Crear Nueva Cuenta</button>
+            <p>¿No tienes cuenta? <button type="button" onclick="cambiarRegistro()">Registrarse</button></p>
         </div>
     </div>
 
-    <!-- Modal de Registro -->
-    <div id="modalRegistro" class="modal">
+    <!-- Modal Registro -->
+    <div id="modalRegistro" class="modal" style="display:none">
         <div class="modal-content">
-            <span class="close" onclick="cerrarModal('modalRegistro')">&times;</span>
-            <h2>Crear Nueva Cuenta</h2>
-            <form id="formRegistro">
+            <span class="close" onclick="cerrarRegistro()">&times;</span>
+            <h2>Crear Cuenta</h2>
+            <form id="formRegistro" onsubmit="hacerRegistro(event)">
                 <input type="text" id="rutReg" placeholder="RUT (ej: 12345678-9)" required>
                 <input type="text" id="nombreReg" placeholder="Nombre" required>
                 <input type="text" id="apellidoReg" placeholder="Apellido" required>
@@ -56,44 +53,39 @@
                 <input type="password" id="passReg" placeholder="Contraseña" required>
                 <input type="text" id="telefonoReg" placeholder="Teléfono (Opcional)">
                 <select id="regionReg" required>
-                    <option value="">Seleccionar Región *</option>
-                    <option value="Arica y Parinacota">Arica y Parinacota</option>
+                    <option value="">Seleccionar Región</option>
+                    <option value="Arica">Arica y Parinacota</option>
                     <option value="Tarapacá">Tarapacá</option>
                     <option value="Antofagasta">Antofagasta</option>
                     <option value="Atacama">Atacama</option>
                     <option value="Coquimbo">Coquimbo</option>
                     <option value="Valparaíso">Valparaíso</option>
-                    <option value="O'Higgins">O'Higgins</option>
+                    <option value="OHiggins">O'Higgins</option>
                     <option value="Maule">Maule</option>
-                    <option value="Ñuble">Ñuble</option>
-                    <option value="Biobío">Biobío</option>
+                    <option value="Nuble">Ñuble</option>
+                    <option value="Biobio">Biobío</option>
                     <option value="Araucanía">Araucanía</option>
-                    <option value="Los Ríos">Los Ríos</option>
-                    <option value="Los Lagos">Los Lagos</option>
-                    <option value="Aysén">Aysén</option>
+                    <option value="LosRios">Los Ríos</option>
+                    <option value="LosLagos">Los Lagos</option>
+                    <option value="Aysen">Aysén</option>
                     <option value="Magallanes">Magallanes</option>
                     <option value="Metropolitana">Metropolitana</option>
                 </select>
-                <input type="text" id="comunaReg" placeholder="Comuna *" required>
+                <input type="text" id="comunaReg" placeholder="Comuna" required>
                 <input type="text" id="direccionReg" placeholder="Dirección (Opcional)">
-                <button type="submit" class="btn-primary">Registrarse</button>
+                <button type="submit">Registrarse</button>
             </form>
-            <p class="modal-divider">o</p>
-            <button onclick="cambiarLogin()" class="btn-secondary">Volver a Iniciar Sesión</button>
+            <p><button type="button" onclick="cambiarLogin()">Volver a Iniciar Sesión</button></p>
         </div>
     </div>
 
-    <!-- Contenedor Principal -->
-    <main id="mainContent" class="container">
-        <!-- Las vistas se cargarán aquí dinámicamente -->
-    </main>
+    <main id="content"></main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 FrontEnd - Tienda de Electrónica y Automatización. Todos los derechos reservados.</p>
+    <footer>
+        <p>&copy; 2024 FrontEnd - Tienda de Electrónica</p>
     </footer>
 
-    <script src="js/validaciones.js"></script>
-    <script src="js/app.js"></script>
+    <script src="../js/validaciones.js"></script>
+    <script src="../js/app.js"></script>
 </body>
 </html>
