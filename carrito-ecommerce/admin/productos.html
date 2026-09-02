@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Gestión de Productos</title>
+</head>
+<body>
+    <header>
+        <h1>Panel Administrativo</h1>
+        <p>Usuario: <strong id="admin-user-nombre">---</strong></p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Dashboard (Pedidos)</a></li>
+            <li><a href="productos.html"><strong>Productos</strong></a></li>
+            <li id="item-nav-usuarios"><a href="usuarios.html">Usuarios</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Lista de Productos</h2>
+        <!-- Al hacer clic nos redirige a la vista separada de agregar -->
+        <a href="editar-producto.html"><button>+ Agregar Nuevo Producto</button></a>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-productos-body">
+                <!-- Filas renderizadas con botón de Editar que lleva a editar-producto.html?id=X -->
+            </tbody>
+        </table>
+    </main>
+
+    <script src="../validaciones.js"></script>
+    <script src="../app.js"></script>
+</body>
+</html>
