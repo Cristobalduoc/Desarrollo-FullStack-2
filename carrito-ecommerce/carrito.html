@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras | Front-End</title>
+</head>
+<body>
+
+    <!-- Encabezado con Menú de Navegación -->
+    <header>
+        <h1>Front-End</h1>
+        <p>Componentes de Robótica y Automatización</p>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="carrito.html">Carrito (<span id="cant-carrito">0</span>)</a></li>
+                <li><a href="login.html" id="btn-login-nav">Iniciar Sesión / Registro</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido Principal: Carrito -->
+    <main>
+        <section>
+            <h2>Tu Carrito de Compras</h2>
+
+            <!-- Tabla de productos en el carrito -->
+            <table border="1" id="tabla-carrito">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio Unitario</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="body-carrito">
+                    <!-- Filas cargadas dinámicamente con JS -->
+                </tbody>
+            </table>
+
+            <h3>Total: $<span id="monto-total">0</span></h3>
+
+            <div>
+                <button id="btn-vaciar-carrito">Vaciar Carrito</button>
+                <button id="btn-pagar">Pagar</button>
+            </div>
+
+            <p id="mensaje-login-requerido" style="display: none;">
+                * Debes iniciar sesión como cliente para poder realizar el pago.
+            </p>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2026 Front-End Electrónica</p>
+    </footer>
+
+</body>
+</html>
