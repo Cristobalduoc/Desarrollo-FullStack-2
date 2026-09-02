@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Editar Producto</title>
+</head>
+<body>
+    <header>
+        <h1 id="titulo-pagina-prod">Editar Producto</h1>
+    </header>
+
+    <main>
+        <form id="form-admin-producto">
+            <!-- Hidden para guardar el ID si se está editando -->
+            <input type="hidden" id="prod-id-hidden">
+            <div>
+                <label for="prod-nombre">Nombre del Producto:</label>
+                <input type="text" id="prod-nombre">
+            </div>
+            <div>
+                <label for="prod-precio">Precio ($):</label>
+                <input type="number" id="prod-precio" min="1">
+            </div>
+            <div>
+                <label for="prod-stock">Stock disponible:</label>
+                <input type="number" id="prod-stock" min="0">
+            </div>
+            <div>
+                <label for="prod-imagen">URL de la Imagen:</label>
+                <input type="text" id="prod-imagen" placeholder="https://...">
+            </div>
+            <div>
+                <label for="prod-descripcion">Descripción:</label>
+                <input type="text" id="prod-descripcion">
+            </div>
+            
+            <button type="submit" id="btn-guardar-producto">Guardar Cambios</button>
+            <a href="productos.html"><button type="button">Cancelar / Volver</button></a>
+        </form>
+    </main>
+
+    <script src="../validaciones.js"></script>
+    <script src="../app.js"></script>
+</body>
+</html>
