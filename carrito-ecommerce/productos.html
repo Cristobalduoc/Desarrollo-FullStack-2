@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos | Front-End</title>
+</head>
+<body>
+
+    <!-- Encabezado con Menú de Navegación -->
+    <header>
+        <h1>Front-End</h1>
+        <p>Componentes de Robótica y Automatización</p>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="carrito.html">Carrito (<span id="cant-carrito">0</span>)</a></li>
+                <li><a href="login.html" id="btn-login-nav">Iniciar Sesión / Registro</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido Principal: Catálogo -->
+    <main>
+        <section>
+            <h2>Catálogo de Productos</h2>
+            <p>Encuentra microcontroladores, sensores y componentes para tus proyectos.</p>
+            
+            <div id="contenedor-catalogo">
+                <!-- Aquí se cargarán dinámicamente los 10 productos con JS -->
+                <article>
+                    <img src="https://via.placeholder.com/150" alt="ESP32">
+                    <h4>ESP32 DevKit v1</h4>
+                    <p>Precio: $6.500</p>
+                    <p>Stock: 15</p>
+                    <button>Añadir al Carrito</button>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2026 Front-End Electrónica</p>
+    </footer>
+
+</body>
+</html>
