@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Gestión de Usuarios</title>
+</head>
+<body>
+    <header>
+        <h1>Panel Administrativo</h1>
+        <p>Usuario: <strong id="admin-user-nombre">---</strong></p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Dashboard (Pedidos)</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="usuarios.html"><strong>Usuarios</strong></a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Gestión de Usuarios</h2>
+        <a href="editar-usuario.html"><button>+ Crear Nuevo Usuario</button></a>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>RUT</th>
+                    <th>Nombre Completo</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+                    <th>Teléfono</th>
+                    <th>Ubicación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-usuarios-body">
+                <!-- Se carga vía app.js -->
+            </tbody>
+        </table>
+    </main>
+
+    <script src="../validaciones.js"></script>
+    <script src="../app.js"></script>
+</body>
+</html>
