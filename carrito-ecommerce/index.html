@@ -3,185 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Front-End | Tienda de Electrónica y Robótica</title>
+    <title>Front-End | Tienda de Electrónica</title>
 </head>
 <body>
 
-    <!-- Encabezado y Navegación Principal -->
+    <!-- Encabezado con Menú de Navegación a Archivos Separados -->
     <header>
-        <h1>Front-End Electrónica</h1>
+        <h1>Front-End</h1>
+        <p>Componentes de Robótica y Automatización</p>
+        
         <nav>
             <ul>
-                <li><a href="#" onclick="mostrarVista('home')">Inicio</a></li>
-                <li><a href="#" onclick="mostrarVista('productos')">Productos</a></li>
-                <li><a href="#" onclick="mostrarVista('nosotros')">Nosotros</a></li>
-                <li><a href="#" onclick="mostrarVista('blog')">Blog</a></li>
-                <li><a href="#" onclick="mostrarVista('contacto')">Contacto</a></li>
-                <li><a href="#" onclick="mostrarVista('carrito')">Carrito (<span id="cant-carrito">0</span>)</a></li>
-                <li id="menu-login"><a href="#" onclick="mostrarVista('login')">Iniciar Sesión / Registro</a></li>
-                <li id="menu-usuario" style="display: none;">
-                    <span id="nombre-usuario-logueado"></span>
-                    <button onclick="cerrarSesion()">Cerrar Sesión</button>
-                </li>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="carrito.html">Carrito (<span id="cant-carrito">0</span>)</a></li>
+                <li><a href="login.html" id="btn-login-nav">Iniciar Sesión / Registro</a></li>
             </ul>
         </nav>
     </header>
 
+    <!-- Contenido Principal del Home -->
     <main>
-        <!-- VISTA: HOME -->
-        <section id="vista-home">
-            <h2>Bienvenido a Front-End</h2>
-            <p>Tu tienda especializada en componentes de robótica, automatización y microcontroladores.</p>
+        <section>
+            <h2>Bienvenido a Front-End Electrónica</h2>
+            <p>Tu tienda especializada en microcontroladores ESP32, sensores, módulos y accesorios de automatización.</p>
+        </section>
+
+        <section>
             <h3>Productos Destacados</h3>
             <div id="contenedor-destacados">
-                <!-- Se cargan productos dinámicamente con JS -->
-            </div>
-        </section>
+                <!-- Muestra simple de productos precargados -->
+                <article>
+                    <img src="https://via.placeholder.com/150" alt="ESP32">
+                    <h4>Módulo ESP32 DevKit v1</h4>
+                    <p>Precio: $6.500</p>
+                    <button>Añadir al Carrito</button>
+                </article>
 
-        <!-- VISTA: PRODUCTOS -->
-        <section id="vista-productos" style="display: none;">
-            <h2>Catálogo de Productos</h2>
-            <div id="contenedor-catálogo">
-                <!-- Se cargan los 10 productos precargados desde localStorage -->
-            </div>
-        </section>
-
-        <!-- VISTA: NOSOTROS -->
-        <section id="vista-nosotros" style="display: none;">
-            <h2>Sobre Nosotros</h2>
-            <p>Somos Front-End, una empresa dedicada a la provisión de módulos electrónicos, sensores, microcontroladores ESP32, Arduino y accesorios para proyectos de automatización e ingeniería.</p>
-        </section>
-
-        <!-- VISTA: BLOG -->
-        <section id="vista-blog" style="display: none;">
-            <h2>Blog de Robótica e IoT</h2>
-            <article>
-                <h3>Cómo empezar con ESP32 y sensores IoT</h3>
-                <p>Aprende las conexiones básicas y lectura de sensores de temperatura usando el microcontrolador ESP32.</p>
-            </article>
-            <article>
-                <h3>Guía básica de alimentación en protoboards</h3>
-                <p>Consejos para no dañar tus módulos usando fuentes de alimentación externas adecuadamente.</p>
-            </article>
-        </section>
-
-        <!-- VISTA: CONTACTO -->
-        <section id="vista-contacto" style="display: none;">
-            <h2>Contáctanos</h2>
-            <form id="form-contacto" onsubmit="validarContacto(event)">
-                <div>
-                    <label for="contacto-nombre">Nombre:</label>
-                    <input type="text" id="contacto-nombre" required>
-                </div>
-                <div>
-                    <label for="contacto-correo">Correo electrónico:</label>
-                    <input type="email" id="contacto-correo" required>
-                </div>
-                <div>
-                    <label for="contacto-mensaje">Mensaje:</label>
-                    <textarea id="contacto-mensaje" rows="4" required></textarea>
-                </div>
-                <button type="submit">Enviar Mensaje</button>
-            </form>
-        </section>
-
-        <!-- VISTA: CARRITO -->
-        <section id="vista-carrito" style="display: none;">
-            <h2>Tu Carrito de Compras</h2>
-            <table border="1" id="tabla-carrito">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Subtotal</th>
-                        <th>Acción</th>
-                    </tr>
-                </thead>
-                <tbody id="items-carrito">
-                    <!-- Filas del carrito cargadas con JS -->
-                </tbody>
-            </table>
-            <h3>Total: $<span id="total-carrito">0</span></h3>
-            <div id="acciones-carrito">
-                <button onclick="vaciarCarrito()">Vaciar Carrito</button>
-                <button id="btn-pagar" onclick="procesarPago()">Pagar</button>
-            </div>
-            <p id="mensaje-login-requerido" style="display: none; color: red;">
-                Debes iniciar sesión con una cuenta de cliente para poder pagar.
-            </p>
-        </section>
-
-        <!-- VISTA: LOGIN / REGISTRO -->
-        <section id="vista-login" style="display: none;">
-            <div>
-                <h2>Iniciar Sesión</h2>
-                <form id="form-login" onsubmit="validarLogin(event)">
-                    <div>
-                        <label for="login-correo">Correo:</label>
-                        <input type="email" id="login-correo" required>
-                    </div>
-                    <div>
-                        <label for="login-password">Contraseña:</label>
-                        <input type="password" id="login-password" required>
-                    </div>
-                    <button type="submit">Ingresar</button>
-                </form>
-            </div>
-
-            <hr>
-
-            <div>
-                <h2>Registro de Cliente</h2>
-                <form id="form-registro" onsubmit="validarRegistro(event)">
-                    <div>
-                        <label for="reg-rut">RUT:</label>
-                        <input type="text" id="reg-rut" placeholder="12345678-9" required>
-                    </div>
-                    <div>
-                        <label for="reg-nombre">Nombre:</label>
-                        <input type="text" id="reg-nombre" required>
-                    </div>
-                    <div>
-                        <label for="reg-apellido">Apellido:</label>
-                        <input type="text" id="reg-apellido" required>
-                    </div>
-                    <div>
-                        <label for="reg-correo">Correo:</label>
-                        <input type="email" id="reg-correo" required>
-                    </div>
-                    <div>
-                        <label for="reg-password">Contraseña:</label>
-                        <input type="password" id="reg-password" required>
-                    </div>
-                    <div>
-                        <label for="reg-telefono">Teléfono (Opcional):</label>
-                        <input type="tel" id="reg-telefono">
-                    </div>
-                    <div>
-                        <label for="reg-region">Región:</label>
-                        <input type="text" id="reg-region" required>
-                    </div>
-                    <div>
-                        <label for="reg-comuna">Comuna:</label>
-                        <input type="text" id="reg-comuna" required>
-                    </div>
-                    <div>
-                        <label for="reg-direccion">Dirección (Opcional):</label>
-                        <input type="text" id="reg-direccion">
-                    </div>
-                    <button type="submit">Registrarse</button>
-                </form>
+                <article>
+                    <img src="https://via.placeholder.com/150" alt="Sensor HC-SR04">
+                    <h4>Sensor Ultrasonido HC-SR04</h4>
+                    <p>Precio: $1.800</p>
+                    <button>Añadir al Carrito</button>
+                </article>
             </div>
         </section>
     </main>
 
+    <!-- Pie de página -->
     <footer>
-        <p>&copy; 2026 Front-End Electrónica - Todos los derechos reservados.</p>
+        <p>&copy; 2026 Front-End Electrónica</p>
     </footer>
 
-    <!-- Archivo JS de validaciones únicas -->
-    <script src="validaciones.js"></script>
 </body>
 </html>
-
