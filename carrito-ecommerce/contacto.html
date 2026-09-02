@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Front-End</title>
+</head>
+<body>
+
+    <!-- Encabezado con Menú de Navegación -->
+    <header>
+        <h1>Front-End</h1>
+        <p>Componentes de Robótica y Automatización</p>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="carrito.html">Carrito (<span id="cant-carrito">0</span>)</a></li>
+                <li><a href="login.html" id="btn-login-nav">Iniciar Sesión / Registro</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Contenido Principal: Formulario de Contacto -->
+    <main>
+        <section>
+            <h2>Contáctanos</h2>
+            <p>¿Tienes dudas sobre algún componente o tu pedido? Envíanos un mensaje.</p>
+
+            <form id="form-contacto">
+                <div>
+                    <label for="contacto-nombre">Nombre:</label>
+                    <input type="text" id="contacto-nombre" required>
+                </div>
+                <div>
+                    <label for="contacto-correo">Correo electrónico:</label>
+                    <input type="email" id="contacto-correo" required>
+                </div>
+                <div>
+                    <label for="contacto-mensaje">Mensaje:</label>
+                    <textarea id="contacto-mensaje" rows="4" required></textarea>
+                </div>
+                <button type="submit">Enviar Mensaje</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2026 Front-End Electrónica</p>
+    </footer>
+
+</body>
+</html>
