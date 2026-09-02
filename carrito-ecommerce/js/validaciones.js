@@ -1,123 +1,96 @@
-// VALIDACIONES BÁSICAS
+// ==========================================
+// ARCHIVO: validaciones.js
+// Validaciones básicas de formularios
+// ==========================================
 
-// Validar RUT (formato básico: números-dígito)
-function validarRUT(rut) {
-    const rutRegex = /^\d{7,8}-[\dkK]$/;
-    return rutRegex.test(rut);
+// Validar que un campo no esté vacío o solo contenga espacios
+function esCampoVacio(valor) {
+    return !valor || valor.trim() === "";
 }
 
-// Validar Email
-function validarEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+// Validar formato de correo básico (debe tener '@' y un punto '.')
+function validarCorreo(correo) {
+    if (esCampoVacio(correo)) return false;
+    return correo.includes("@") && correo.includes(".");
 }
 
-// Validar Contraseña (mínimo 6 caracteres)
+// Validar longitud mínima de contraseña (mínimo 4 caracteres)
 function validarPassword(password) {
-    return password && password.length >= 6;
+    if (esCampoVacio(password)) return false;
+    return password.length >= 4;
 }
 
-// Validar que no esté vacío
-function validarRequerido(valor) {
-    return valor && valor.trim().length > 0;
+// Validar formato básico de RUT (al menos 8 caracteres, ej: 12345678-9 o sin guión)
+function validarRut(rut) {
+    if (esCampoVacio(rut)) return false;
+    // Quitamos puntos y espacios para revisar longitud
+    const rutLimpio = rut.replace(/\./g, "").trim();
+    return rutLimpio.length >= 8;
 }
 
-// Validar Número Teléfono (opcional, pero si se ingresa debe tener formato)
-function validarTelefono(telefono) {
-    if (!telefono) return true; // Es opcional
-    const telefonoRegex = /^[0-9]{8,12}$/;
-    return telefonoRegex.test(telefono.replace(/\D/g, ''));
-}
-
-// Validar Región
-function validarRegion(region) {
-    return validarRequerido(region);
-}
-
-// Validar Comuna
-function validarComuna(comuna) {
-    return validarRequerido(comuna);
-}
-
-// Validar Dirección (opcional)
-function validarDireccion(direccion) {
-    return true; // Es opcional
-}
-
-// Validar que el número sea válido
-function validarNumero(numero) {
-    return !isNaN(numero) && numero > 0;
-}
-
-// Validar Stock
-function validarStock(stock) {
-    return validarNumero(stock) && stock === Math.floor(stock);
-}
-
-// Validar Precio
-function validarPrecio(precio) {
-    return validarNumero(precio) && precio > 0;
-}
-
-// Función auxiliar para mostrar mensajes de error
-function mostrarError(mensaje) {
-    console.error(mensaje);
-    return false;
-}
-
-// Validar formulario de registro
-function validarFormularioRegistro(rut, nombre, apellido, email, password, region, comuna) {
-    if (!validarRUT(rut)) {
-        return { valido: false, mensaje: "RUT inválido. Formato: 12345678-9" };
+// Validar formulario de registro de usuario cliente
+function validarFormularioRegistro(datos) {
+    if (esCampoVacio(datos.rut) || !validarRut(datos.rut)) {
+        alert("Por favor ingresa un RUT válido (mínimo 8 caracteres).");
+        return false;
     }
-    if (!validarRequerido(nombre)) {
-        return { valido: false, mensaje: "El nombre es requerido" };
+    if (esCampoVacio(datos.nombre)) {
+        alert("El nombre es obligatorio.");
+        return false;
     }
-    if (!validarRequerido(apellido)) {
-        return { valido: false, mensaje: "El apellido es requerido" };
+    if (esCampoVacio(datos.apellido)) {
+        alert("El apellido es obligatorio.");
+        return false;
     }
-    if (!validarEmail(email)) {
-        return { valido: false, mensaje: "Email inválido" };
+    if (!validarCorreo(datos.correo)) {
+        alert("Por favor ingresa un correo electrónico válido (debe incluir @ y .).");
+        return false;
     }
-    if (!validarPassword(password)) {
-        return { valido: false, mensaje: "La contraseña debe tener mínimo 6 caracteres" };
+    if (!validarPassword(datos.password)) {
+        alert("La contraseña debe tener al menos 4 caracteres.");
+        return false;
     }
-    if (!validarRegion(region)) {
-        return { valido: false, mensaje: "Debe seleccionar una región" };
+    if (esCampoVacio(datos.region)) {
+        alert("La región es obligatoria.");
+        return false;
     }
-    if (!validarComuna(comuna)) {
-        return { valido: false, mensaje: "La comuna es requerida" };
+    if (esCampoVacio(datos.comuna)) {
+        alert("La comuna es obligatoria.");
+        return false;
     }
-    return { valido: true, mensaje: "Formulario válido" };
+    return true; // Todo correcto
 }
 
 // Validar formulario de login
-function validarFormularioLogin(rut, password) {
-    if (!validarRUT(rut)) {
-        return { valido: false, mensaje: "RUT inválido" };
+function validarFormularioLogin(correo, password) {
+    if (!validarCorreo(correo)) {
+        alert("Ingresa un correo válido.");
+        return false;
     }
-    if (!validarPassword(password)) {
-        return { valido: false, mensaje: "Contraseña inválida" };
+    if (esCampoVacio(password)) {
+        alert("Ingresa tu contraseña.");
+        return false;
     }
-    return { valido: true, mensaje: "Datos de login válidos" };
+    return true;
 }
 
-// Validar producto
-function validarProducto(nombre, descripcion, precio, stock, imagen) {
-    if (!validarRequerido(nombre)) {
-        return { valido: false, mensaje: "El nombre del producto es requerido" };
+// Validar datos de un producto (para Admin / Vendedor)
+function validarFormularioProducto(datos) {
+    if (esCampoVacio(datos.nombre)) {
+        alert("El nombre del producto es obligatorio.");
+        return false;
     }
-    if (!validarRequerido(descripcion)) {
-        return { valido: false, mensaje: "La descripción es requerida" };
+    if (isNaN(datos.precio) || Number(datos.precio) <= 0) {
+        alert("El precio debe ser un número mayor a 0.");
+        return false;
     }
-    if (!validarPrecio(precio)) {
-        return { valido: false, mensaje: "El precio debe ser un número válido mayor a 0" };
+    if (isNaN(datos.stock) || Number(datos.stock) < 0) {
+        alert("El stock debe ser un número mayor o igual a 0.");
+        return false;
     }
-    if (!validarStock(stock)) {
-        return { valido: false, mensaje: "El stock debe ser un número entero válido" };
+    if (esCampoVacio(datos.imagen)) {
+        alert("La URL de la imagen es obligatoria.");
+        return false;
     }
-    if (!validarRequerido(imagen)) {
-        return { valido: false, mensaje: "La URL de imagen es requerida" };
-    }
-    return { valido: true, mensaje: "Producto válido" };
+    return true;
 }
