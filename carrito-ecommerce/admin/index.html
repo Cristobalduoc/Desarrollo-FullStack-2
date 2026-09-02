@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Dashboard de Pedidos</title>
+</head>
+<body>
+    <header>
+        <h1>Panel Administrativo</h1>
+        <p>Usuario: <strong id="admin-user-nombre">---</strong> (<span id="admin-user-rol">---</span>)</p>
+        <button id="btn-cerrar-sesion">Cerrar Sesión / Volver</button>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html"><strong>Dashboard (Pedidos)</strong></a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li id="item-nav-usuarios"><a href="usuarios.html">Usuarios</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Dashboard de Pedidos</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID Órden</th>
+                    <th>RUT Cliente</th>
+                    <th>Cliente</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Dirección de Envío</th>
+                    <th>Monto Total</th>
+                    <th>Estado Actual</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-pedidos-body">
+                <!-- Se carga vía app.js -->
+            </tbody>
+        </table>
+    </main>
+
+    <script src="../validaciones.js"></script>
+    <script src="../app.js"></script>
+</body>
+</html>
